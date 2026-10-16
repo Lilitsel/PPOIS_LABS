@@ -1,0 +1,16 @@
+# Виртуальное окружение
+.venv/
+venv/
+__pycache__/
+
+# Настройки IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Артефакты
+.pytest_cache/
+docs/
+htmlcov/
+.coverage
+*.html
