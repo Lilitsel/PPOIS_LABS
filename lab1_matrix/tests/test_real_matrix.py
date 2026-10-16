@@ -1,6 +1,6 @@
 import os
 import unittest
-from real_matrix import RealMatrix
+from lab1.real_matrix import RealMatrix
 
 
 class TestRealMatrix(unittest.TestCase):
