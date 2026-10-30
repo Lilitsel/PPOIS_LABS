@@ -18,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10" # Или ваша версия Python
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
@@ -27,18 +27,18 @@ jobs:
 
       - name: Run linter (Flake8)
         run: |
-          # Проверка кода линтером (игнорируем слишком длинные строки если нужно, например --max-line-length=120)
+          # Проверка кода линтером (игнорируем слишком длинные строки если нужно)
           flake8 lab1 --max-line-length=120 --statistics
 
       - name: Run tests and check coverage
         run: |
-          # PYTHONPATH нужен для корректного импорта пакета, а --cov-fail-under=90 гарантирует падение сборки, если покрытие < 90%
+          # PYTHONPATH нужен для корректного импорта пакета
           export PYTHONPATH=.
           pytest --cov=lab1.cantor_set --cov=lab1.abstract_set --cov-fail-under=90 --cov-report=term-missing
 
       - name: Create build artifact
         run: |
-          # Создаем архив с исходным кодом проекта (артефакт для релиза)
+          # Создаем архив с исходным кодом проекта
           mkdir -p dist
           zip -r dist/cantor-set-project.zip lab1/ README.md requirements.txt
 
