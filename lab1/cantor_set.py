@@ -1,7 +1,7 @@
 import copy
 import itertools
 from typing import Any, List
-from .abstract_set import AbstractCantorSet
+from lab1.abstract_set import AbstractCantorSet
 
 
 class CantorSet(AbstractCantorSet):

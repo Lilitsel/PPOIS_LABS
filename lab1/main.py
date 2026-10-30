@@ -1,4 +1,4 @@
-from cantor_set import CantorSet
+from lab1.cantor_set import CantorSet
 
 def show_menu():
     print("\nМеню Cantor Set")
