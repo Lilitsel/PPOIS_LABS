@@ -1,0 +1,21 @@
+# Виртуальное окружение
+.venv/
+venv/
+ENV/
+env/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Настройки IDE (PyCharm / JetBrains)
+.idea/
+
+# Файлы покрытия тестами (coverage)
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Системные файлы macOS
+.DS_Store

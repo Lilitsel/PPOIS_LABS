@@ -1,4 +1,4 @@
-from real_matrix import RealMatrix
+from lab1_matrix.real_matrix import RealMatrix
 
 
 def print_menu():
@@ -12,6 +12,7 @@ def print_menu():
   print('7. Транспонировать матрицу')
   print('8. Извлечь подматрицу')
   print('9. Проверить свойства матрицы')
+
   print('10. Сохранить матрицу в файл')
   print('0. Выход')
 
