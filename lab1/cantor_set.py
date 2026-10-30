@@ -41,8 +41,14 @@ class CantorSet(AbstractCantorSet):
     def remove(self, item: Any) -> None:
         if item in self._elements:
             self._elements.remove(item)
-        else:
-            raise KeyError(f"Элемент {item} не найден в множестве")
+            return
+        if isinstance(item, int) and str(item) in self._elements:
+            self._elements.remove(str(item))
+            return
+        if isinstance(item, str) and item.isdigit() and int(item) in self._elements:
+            self._elements.remove(int(item))
+            return
+        raise KeyError(f"Элемент {item} не найден в множестве")
 
     def __len__(self) -> int:
         return len(self._elements)
@@ -62,7 +68,7 @@ class CantorSet(AbstractCantorSet):
     def __ne__(self, other: Any) -> bool:
         return not self.__eq__(other)
 
-    __hash__ = None  # Множество изменяемое, поэтому хеш отключается
+    __hash__ = None
 
     #Вывод
     def __str__(self) -> str:
@@ -80,13 +86,20 @@ class CantorSet(AbstractCantorSet):
 
         stack = []
         current_item = ""
+        def _add_item(target_set, item_str):
+            if not item_str:
+                return
+            if item_str.isdigit():
+                target_set.add(int(item_str))
+            else:
+                target_set.add(item_str)
 
         for char in text:
             if char == '{':
                 stack.append(cls())
             elif char == '}':
                 if current_item:
-                    stack[-1].add(current_item)
+                    _add_item(stack[-1], current_item)
                     current_item = ""
                 finished_set = stack.pop()
                 if stack:
@@ -95,7 +108,7 @@ class CantorSet(AbstractCantorSet):
                     return finished_set
             elif char == ',':
                 if current_item:
-                    stack[-1].add(current_item)
+                    _add_item(stack[-1], current_item)
                     current_item = ""
             else:
                 current_item += char
@@ -166,7 +179,7 @@ class CantorSet(AbstractCantorSet):
     def decrement(self) -> None:
         self._elements = [el - 1 if isinstance(el, (int, float)) else el for el in self._elements]
 
-    #Приведение к типу float(мощность множества)
+    #мощность множества
     def __float__(self) -> float:
         return float(len(self._elements))
 

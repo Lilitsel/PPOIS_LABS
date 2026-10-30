@@ -1,5 +1,4 @@
-from lab1.cantor_set import CantorSet
-
+from cantor_set import CantorSet
 
 def show_menu():
     print("\nМеню Cantor Set")
@@ -12,7 +11,7 @@ def show_menu():
     print("7. Построить булеан (power_set)")
     print("8. Арифметические операции (+, *, -)")
     print("9. Проверить принадлежность элемента ([item])")
-    print("10. Увеличить/уменьшить числовые элементы (increment / decrement)")
+    print("10. Увеличить/уменьшить числовые элементы")
     print("0. Выход")
 
 
@@ -42,7 +41,7 @@ def main():
                 if el.isdigit():
                     el = int(el)
                 current_set.remove(el)
-                print("Элемент удален.")
+                print("Элемент успешно удален.")
             elif choice == '5':
                 print("Пустое!" if current_set.is_empty() else "Не пустое.")
             elif choice == '6':
