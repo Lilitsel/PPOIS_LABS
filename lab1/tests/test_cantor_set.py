@@ -42,11 +42,9 @@ def test_add_and_remove():
     s.remove(2)  # удалит "2", так как передан int 2
     assert "2" not in s._elements
 
-
     s.add(5)
     s.remove("5")
     assert 5 not in s._elements
-
 
     with pytest.raises(KeyError):
         s.remove(999)
@@ -63,7 +61,6 @@ def test_copy_methods():
 
     c3 = copy.deepcopy(s)
     assert c3 == s
-
 
     del c1
 
@@ -119,7 +116,6 @@ def test_arithmetic_operations():
     s1 = CantorSet([1, 2, 3])
     s2 = CantorSet([3, 4, 5])
 
-
     res_add = s1 + s2
     assert len(res_add) == 5
 
@@ -128,22 +124,18 @@ def test_arithmetic_operations():
     s1_iadd += s2
     assert 4 in s1_iadd._elements
 
-
     res_mul = s1 * s2
     assert len(res_mul) == 1
     assert 3 in res_mul._elements
-
 
     s1_imul = CantorSet([1, 2, 3])
     s1_imul *= s2
     assert len(s1_imul) == 1
 
-
     res_sub = s1 - s2
     assert len(res_sub) == 2
     assert 1 in res_sub._elements
     assert 3 not in res_sub._elements
-
 
     s1_isub = CantorSet([1, 2, 3])
     s1_isub -= s2
@@ -162,7 +154,6 @@ def test_modifiers_and_conversions():
     assert 1 in s._elements
 
     assert float(s) == 3.0
-
 
     ps = s.power_set()
     assert not ps.is_empty()

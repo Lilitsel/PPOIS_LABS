@@ -1,5 +1,6 @@
 from lab1.cantor_set import CantorSet
 
+
 def show_menu():
     print("\nМеню Cantor Set")
     print("1. Создать/загрузить множество из строки")
