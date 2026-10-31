@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List
-from lab1_matrix.abstract_matrix import IMatrix
+from lab1.abstract_matrix import IMatrix
 
 class RealMatrix(IMatrix):
 

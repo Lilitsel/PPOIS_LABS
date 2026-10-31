@@ -1,4 +1,4 @@
-from lab1_matrix.real_matrix import RealMatrix
+from lab1.real_matrix import RealMatrix
 
 
 def print_menu():

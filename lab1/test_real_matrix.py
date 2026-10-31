@@ -1,7 +1,7 @@
 import os
 import unittest
-from lab1_matrix.real_matrix import RealMatrix
-from lab1_matrix.abstract_matrix import IMatrix
+from lab1.real_matrix import RealMatrix
+from lab1.abstract_matrix import IMatrix
 
 class TestRealMatrix(unittest.TestCase):
 
