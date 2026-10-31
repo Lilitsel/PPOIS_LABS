@@ -63,7 +63,7 @@ class RealMatrix(IMatrix):
             line.strip() for line in text.strip().split('\n') if line.strip()
         ]
         if not lines:
-            raise ValueError('Пустой текст для инициализации матрицы.')
+            raise ValueError("Пустой текст для инициализации матрицы")
         data = []
         for line in lines:
             row = [float(x) for x in line.split()]
