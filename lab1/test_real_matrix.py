@@ -18,6 +18,7 @@ class TestRealMatrix(unittest.TestCase):
         with self.assertRaises(ValueError):
             RealMatrix(2, -1)
 
+    # Тест доступа по индексам и замены строки
 # Тест доступа по индексам и замены строки
     def test_getitem_and_setitem(self):
         m = RealMatrix(2, 2, 0.0)
@@ -28,6 +29,7 @@ class TestRealMatrix(unittest.TestCase):
         with self.assertRaises(ValueError):
             m[0] = [1.0, 2.0, 3.0]
 
+    # Тест сравнения матриц (__eq__ и __ne__)
 # Тест сравнения матриц (__eq__ и __ne__)
     def test_equality_and_inequality(self):
         m1 = RealMatrix(2, 2, 1.0)
@@ -44,12 +46,15 @@ class TestRealMatrix(unittest.TestCase):
         self.assertTrue(m1 != m3)
         self.assertFalse(m1 != m2)
 
+
+    # Tест строковых представлений (__str__ и __repr__)
 # Tест строковых представлений (__str__ и __repr__)
     def test_string_representations(self):
         m = RealMatrix(1, 1, 3.5)
         self.assertIn("3.5000", str(m))
         self.assertIn("RealMatrix", repr(m))
 
+    # Тест создания матрицы из строки и обработки ошибок
 # Тест создания матрицы из строки и обработки ошибок
     def test_from_string_and_errors(self):
         text = "1.0 2.0\n3.0 4.0"
@@ -66,6 +71,7 @@ class TestRealMatrix(unittest.TestCase):
         with self.assertRaises(ValueError):
             RealMatrix.from_string("1.0 2.0\n3.0")
 
+    # Тест сохранения и загрузки из файла
 # Тест сохранения и загрузки из файла
     def test_file_operations(self):
         m = RealMatrix(2, 2, 4.0)
@@ -78,13 +84,15 @@ class TestRealMatrix(unittest.TestCase):
             if os.path.exists(filename):
                 os.remove(filename)
 
-# Тест инкремента и декремента
+
+    # Тест инкремента и декремента
     def test_increment_and_decrement(self):
         m = RealMatrix(2, 2, 1.0)
         m.increment()
         self.assertEqual(m[0][0], 2.0)
         m.decrement()
         self.assertEqual(m[0][0], 1.0)
+
 
 # Тест изменения размера матрицы
     def test_resize(self):
@@ -105,6 +113,7 @@ class TestRealMatrix(unittest.TestCase):
         with self.assertRaises(ValueError):
             m.resize(0, 2)
 
+
 # Тест транспонирования матрицы
     def test_transpose(self):
         text = "1.0 2.0\n3.0 4.0"
@@ -112,6 +121,7 @@ class TestRealMatrix(unittest.TestCase):
         t = m.transpose()
         self.assertEqual(t[0], [1.0, 3.0])
         self.assertEqual(t[1], [2.0, 4.0])
+
 
 # Тест извлечения подматрицы и проверка границ
     def test_get_submatrix(self):
@@ -140,7 +150,9 @@ class TestRealMatrix(unittest.TestCase):
         self.assertTrue(zero_m.is_zero())
         self.assertFalse(sq.is_zero())
 
+
 # Тест свойств: единичная и диагональная матрица
+
     def test_matrix_properties_identity_and_diagonal(self):
         id_m = RealMatrix.from_string("1.0 0.0\n0.0 1.0")
         self.assertTrue(id_m.is_identity())
@@ -164,7 +176,9 @@ class TestRealMatrix(unittest.TestCase):
         self.assertFalse(non_sym.is_symmetric())
         self.assertFalse(RealMatrix(2, 3, 1.0).is_symmetric())
 
+
 # Тест верхней и нижней треугольных матриц
+
     def test_matrix_properties_triangular(self):
         upper = RealMatrix.from_string("1.0 2.0\n0.0 3.0")
         self.assertTrue(upper.is_upper_triangular())
