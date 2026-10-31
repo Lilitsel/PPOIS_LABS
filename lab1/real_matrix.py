@@ -74,7 +74,6 @@ class RealMatrix(IMatrix):
         for row in data:
             if len(row) != cols:
                 raise ValueError('Все строки должны содержать одинаковое число элементов.')
-
         matrix = cls(rows, cols)
         matrix._data = data
         return matrix
