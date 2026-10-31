@@ -6,12 +6,18 @@ from lab1.abstract_matrix import IMatrix
 class RealMatrix(IMatrix):
     EPSILON = 1e-9
 
-    def __init__(self, rows: int, cols: int, initial_value: float = 0.0) -> None:
+    def __init__(
+            self,
+            rows: int,
+            cols: int,
+            initial_value: float = 0.0) -> None:
         if rows <= 0 or cols <= 0:
-            raise ValueError('Размеры матрицы должны быть положительными числами')
+            raise ValueError(
+                'Размеры матрицы должны быть положительными числами')
         self._rows = rows
         self._cols = cols
-        self._data: List[List[float]] = [[float(initial_value) for _ in range(cols)] for _ in range(rows)]
+        self._data: List[List[float]] = [
+            [float(initial_value) for _ in range(cols)] for _ in range(rows)]
 
     def get_rows(self) -> int:
         return self._rows
@@ -49,7 +55,8 @@ class RealMatrix(IMatrix):
 
     # Вывод и чтение объекта
     def __str__(self) -> str:
-        return '\n'.join(['\t'.join(f'{val:10.4f}' for val in row) for row in self._data])
+        return '\n'.join(
+            ['\t'.join(f'{val:10.4f}' for val in row) for row in self._data])
 
     def __repr__(self) -> str:
         return (
@@ -63,7 +70,7 @@ class RealMatrix(IMatrix):
             line.strip() for line in text.strip().split('\n') if line.strip()
         ]
         if not lines:
-            raise ValueError("Пустой текст для инициализации матрицы")
+            raise ValueError('Пустой текст для инициализации матрицы.')
         data = []
         for line in lines:
             row = [float(x) for x in line.split()]
@@ -73,7 +80,9 @@ class RealMatrix(IMatrix):
         cols = len(data[0])
         for row in data:
             if len(row) != cols:
-                raise ValueError('Все строки должны содержать одинаковое число элементов.')
+                raise ValueError(
+                    'Все строки должны содержать одинаковое число элементов.')
+
         matrix = cls(rows, cols)
         matrix._data = data
         return matrix
@@ -90,7 +99,6 @@ class RealMatrix(IMatrix):
 
     # Пре- и постинкремент/декремент
     def increment(self) -> RealMatrix:
-
         for i in range(self._rows):
             for j in range(self._cols):
                 self._data[i][j] += 1.0
@@ -103,11 +111,13 @@ class RealMatrix(IMatrix):
         return self
 
     # Изменение числа строк и столбцов матрицы
-    def resize(self, new_rows: int, new_cols: int, fill_value: float = 0.0) -> None:
+    def resize(self, new_rows: int, new_cols: int,
+               fill_value: float = 0.0) -> None:
         if new_rows <= 0 or new_cols <= 0:
             raise ValueError('Новые размеры должны быть положительными.')
 
-        new_data = [[float(fill_value) for _ in range(new_cols)] for _ in range(new_rows)]
+        new_data = [[float(fill_value) for _ in range(new_cols)]
+                    for _ in range(new_rows)]
         for i in range(min(self._rows, new_rows)):
             for j in range(min(self._cols, new_cols)):
                 new_data[i][j] = self._data[i][j]
@@ -124,16 +134,22 @@ class RealMatrix(IMatrix):
         return transposed
 
     # Извлечение подматрицы заданного размера
-    def get_submatrix(self, start_row: int, start_col: int, sub_rows: int, sub_cols: int) -> RealMatrix:
+    def get_submatrix(
+            self,
+            start_row: int,
+            start_col: int,
+            sub_rows: int,
+            sub_cols: int) -> RealMatrix:
         if (
-                start_row < 0
-                or start_col < 0
-                or sub_rows <= 0
-                or sub_cols <= 0
-                or start_row + sub_rows > self._rows
-                or start_col + sub_cols > self._cols
+            start_row < 0
+            or start_col < 0
+            or sub_rows <= 0
+            or sub_cols <= 0
+            or start_row + sub_rows > self._rows
+            or start_col + sub_cols > self._cols
         ):
-            raise ValueError('Некорректные параметры для извлечения подматрицы.')
+            raise ValueError(
+                'Некорректные параметры для извлечения подматрицы.')
 
         sub = RealMatrix(sub_rows, sub_cols)
         for i in range(sub_rows):
@@ -155,10 +171,7 @@ class RealMatrix(IMatrix):
             return False
         for i in range(self._rows):
             for j in range(self._cols):
-                if i == j:
-                    expected = 1.0
-                else:
-                    expected = 0.0
+                expected = 1.0 if i == j else 0.0
                 if abs(self._data[i][j] - expected) > self.EPSILON:
                     return False
         return True

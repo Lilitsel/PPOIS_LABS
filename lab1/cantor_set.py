@@ -11,7 +11,9 @@ class CantorSet(AbstractCantorSet):
         if elements:
             for el in elements:
                 self.add(el)
-#деструктор
+
+    # деструктор
+
     def __del__(self):
         if hasattr(self, '_elements'):
             self._elements.clear()
@@ -123,13 +125,13 @@ class CantorSet(AbstractCantorSet):
             result.add(item)
         return result
 
-# Составное объединение
+    # Составное объединение
     def __iadd__(self, other: 'CantorSet') -> 'CantorSet':
         for item in other._elements:
             self.add(item)
         return self
 
-# Пересечение
+    # Пересечение
     def __mul__(self, other: 'CantorSet') -> 'CantorSet':
         result = CantorSet()
         for item in self._elements:
@@ -137,13 +139,13 @@ class CantorSet(AbstractCantorSet):
                 result.add(item)
         return result
 
-# Составное пересечение
+    # Составное пересечение
     def __imul__(self, other: 'CantorSet') -> 'CantorSet':
         self._elements = [
             item for item in self._elements if item in other._elements]
         return self
 
-# Pазность
+    # Pазность
     def __sub__(self, other: 'CantorSet') -> 'CantorSet':
         result = CantorSet()
         for item in self._elements:
@@ -151,7 +153,7 @@ class CantorSet(AbstractCantorSet):
                 result.add(item)
         return result
 
-# Составная разность
+    # Составная разность
     def __isub__(self, other: 'CantorSet') -> 'CantorSet':
         self._elements = [
             item for item in self._elements if item not in other._elements]
@@ -188,7 +190,7 @@ class CantorSet(AbstractCantorSet):
     def __float__(self) -> float:
         return float(len(self._elements))
 
-# Построение булеана
+    # Построение булеана
     def power_set(self) -> 'CantorSet':
         result = CantorSet()
         for r in range(len(self) + 1):

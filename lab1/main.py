@@ -1,3 +1,5 @@
+
+from lab1.real_matrix import RealMatrix
 from lab1.cantor_set import CantorSet
 
 
@@ -90,7 +92,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-from lab1.real_matrix import RealMatrix
 
 
 def print_menu():
@@ -215,4 +216,6 @@ def main():
 
 
 if __name__ == '__main__':
+
     main()
+
