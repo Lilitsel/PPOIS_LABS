@@ -3,19 +3,20 @@
 venv/
 ENV/
 env/
-
-# Кэш Python
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Настройки IDE (PyCharm / JetBrains)
+# Настройки IDE
 .idea/
+.vscode/
 
-# Файлы покрытия тестами (coverage)
-.coverage
-htmlcov/
+# Артефакты тестов и документация
 .pytest_cache/
+docs/
+htmlcov/
+.coverage
+*.html
 
 # Системные файлы macOS
 .DS_Store
