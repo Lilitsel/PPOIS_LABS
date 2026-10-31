@@ -11,7 +11,7 @@ class CantorSet(AbstractCantorSet):
         if elements:
             for el in elements:
                 self.add(el)
-
+#деструктор
     def __del__(self):
         if hasattr(self, '_elements'):
             self._elements.clear()

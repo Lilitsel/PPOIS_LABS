@@ -1,16 +1,22 @@
 # Виртуальное окружение
 .venv/
 venv/
+ENV/
+env/
 __pycache__/
+*.py[cod]
+*$py.class
 
 # Настройки IDE
 .idea/
 .vscode/
-.DS_Store
 
-# Артефакты
+# Артефакты тестов и документация
 .pytest_cache/
 docs/
 htmlcov/
 .coverage
 *.html
+
+# Системные файлы macOS
+.DS_Store
