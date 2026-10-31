@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "feature/lab1-cantor-set" ]
     tags: [ "v*" ]
   pull_request:
     branches: [ "main", "master" ]
