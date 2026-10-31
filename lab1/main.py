@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from lab1.cantor_set import CantorSet
 
 
@@ -91,7 +91,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
 from lab1.real_matrix import RealMatrix
 
 
@@ -218,4 +217,4 @@ def main():
 
 if __name__ == '__main__':
   main()
->>>>>>> 0522b33791249e736cbbac0a4050e9877c4008d6
+
