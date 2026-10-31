@@ -35,12 +35,12 @@ jobs:
           flake8 lab1_matrix/ main.py --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Run tests and check coverage
-        env:
-          PYTHONPATH: .
-        run: |
-          coverage run -m unittest discover -s lab1
-          coverage report
-          coverage xml
+  env:
+    PYTHONPATH: .
+  run: |
+    coverage run -m unittest discover -s lab1
+    coverage report
+    coverage xml
 
       - name: Build standalone executable (PyInstaller)
         run: |
