@@ -43,7 +43,8 @@ class CantorSet(AbstractCantorSet):
         if isinstance(item, int) and str(item) in self._elements:
             self._elements.remove(str(item))
             return
-        if isinstance(item, str) and item.isdigit() and int(item) in self._elements:
+        if isinstance(item, str) and item.isdigit() and int(
+                item) in self._elements:
             self._elements.remove(int(item))
             return
         raise KeyError(f"Элемент {item} не найден в множестве")
@@ -175,11 +176,13 @@ class CantorSet(AbstractCantorSet):
 
     def increment(self) -> None:
         self._elements = [
-            el + 1 if isinstance(el, (int, float)) else el for el in self._elements]
+            el + 1 if isinstance(el, (int, float))
+            else el for el in self._elements]
 
     def decrement(self) -> None:
         self._elements = [
-            el - 1 if isinstance(el, (int, float)) else el for el in self._elements]
+            el - 1 if isinstance(el, (int, float))
+            else el for el in self._elements]
 
     # мощность множества
     def __float__(self) -> float:
