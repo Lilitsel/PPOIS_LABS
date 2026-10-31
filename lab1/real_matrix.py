@@ -141,12 +141,12 @@ class RealMatrix(IMatrix):
             sub_rows: int,
             sub_cols: int) -> RealMatrix:
         if (
-            start_row < 0
-            or start_col < 0
-            or sub_rows <= 0
-            or sub_cols <= 0
-            or start_row + sub_rows > self._rows
-            or start_col + sub_cols > self._cols
+                start_row < 0
+                or start_col < 0
+                or sub_rows <= 0
+                or sub_cols <= 0
+                or start_row + sub_rows > self._rows
+                or start_col + sub_cols > self._cols
         ):
             raise ValueError(
                 'Некорректные параметры для извлечения подматрицы.')
