@@ -35,7 +35,7 @@ lab2/
 │   ├── cli/                # консольный интерфейс и демо-данные (отделены от логики)
 │   ├── constants.py        # все числовые параметры бизнес-логики
 │   ├── statuses.py         # перечисления состояний
-│   └── exceptions.py       # собственные исключения
+│   └── exceptions/         # собственные исключения, по одному в файле
 ├── tests/                  # модульные тесты
 ├── run_cli.py              # точка входа для сборки исполняемого файла
 ├── setup.cfg               # настройки flake8, pytest, coverage
@@ -178,7 +178,7 @@ flake8 travel_agency tests run_cli.py           # статический ана�
 
 `BookingStatus`, `PaymentStatus`, `RefundStatus`, `TicketStatus`, `ComplaintStatus` — допустимые состояния объектов.
 
-## Исключения (`travel_agency/exceptions.py`)
+## Исключения (`travel_agency/exceptions/`, каждое в отдельном файле)
 
 | Исключение | Когда возникает |
 |---|---|
