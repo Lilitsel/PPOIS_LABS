@@ -4,8 +4,10 @@ on:
   push:
     branches: [ "main", "master", "feature/lab1-cantor-set" ]
     tags: [ "v*" ]
+    paths: [ "lab1/**", ".github/workflows/ci.yml" ]
   pull_request:
     branches: [ "main", "master" ]
+    paths: [ "lab1/**" ]
 
 jobs:
   build-and-test:
