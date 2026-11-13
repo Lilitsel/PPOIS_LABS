@@ -19,4 +19,9 @@ htmlcov/
 *.html
 
 # Системные файлы macOS
+.DS_Storebuild/
+dist/
+*.spec
+*.pyz
+coverage.xml
 .DS_Store
