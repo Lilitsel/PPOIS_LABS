@@ -37,7 +37,7 @@ jobs:
     needs: quality
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -73,5 +73,5 @@ jobs:
         with:
           tag_name: lab2-v${{ github.run_number }}
           name: "Лабораторная работа №2, сборка ${{ github.run_number }}"
-          body: "Туристическая компания: CLI-приложение. Windows — .exe, macOS и Linux — бинарные файлы, любая ОС с Python 3.10+ — .pyz"
+          body: "Туристическая компания: CLI-приложение. Windows — .exe, Linux — бинарный файл, любая ОС с Python 3.10+ — .pyz"
           files: release/*
