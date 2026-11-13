@@ -1,6 +1,7 @@
 name: lab2 CI/CD
 
 on:
+  workflow_dispatch:
   push:
     branches: [main, "feature/**"]
     paths: ["lab2/**", ".github/workflows/lab2.yml"]
