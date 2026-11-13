@@ -13,7 +13,7 @@ __pycache__/
 
 # Артефакты тестов и документация
 .pytest_cache/
-docs/
+/docs/
 htmlcov/
 .coverage
 *.html

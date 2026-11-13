@@ -202,3 +202,13 @@ flake8 travel_agency tests run_cli.py           # статический ана�
 | `StaffNotQualifiedException` | У сотрудника нет нужного языка, категории прав или полномочий |
 | `EmployeeNotFoundException` | Сотрудник не найден в филиале |
 | `InsuranceClaimRejectedException` | Страховой случай вне срока или сверх покрытия |
+
+## Документация
+
+HTML-документация по коду лежит в папке `docs/`: откройте `docs/index.html` в браузере.
+Она сгенерирована инструментом pdoc из описаний классов и методов в коде. Пересоздать после изменений:
+
+```bash
+pip install pdoc==14.7.0
+pdoc travel_agency -o docs
+```
