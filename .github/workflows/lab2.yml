@@ -1,0 +1,76 @@
+name: lab2 CI/CD
+
+on:
+  push:
+    branches: [main, "feature/**"]
+    paths: ["lab2/**", ".github/workflows/lab2.yml"]
+  pull_request:
+    branches: [main]
+    paths: ["lab2/**", ".github/workflows/lab2.yml"]
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: lab2
+
+jobs:
+  quality:
+    name: Линтер и тесты
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Установка зависимостей
+        run: pip install -r requirements-dev.txt
+      - name: Статический анализ (flake8)
+        run: flake8 travel_agency tests run_cli.py
+      - name: Тесты с проверкой покрытия
+        run: pytest --cov --cov-report=term-missing --cov-fail-under=90
+
+  build:
+    name: Сборка (${{ matrix.os }})
+    needs: quality
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Установка PyInstaller
+        run: pip install pyinstaller==6.10.0
+      - name: Сборка исполняемого файла
+        run: pyinstaller --onefile --paths . --name travel_agency-${{ runner.os }} run_cli.py
+      - name: Сборка переносимого архива .pyz
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p build/pyz
+          cp -r travel_agency build/pyz/
+          python -m zipapp build/pyz -m "travel_agency.cli.menu:main" -p "/usr/bin/env python3" -o dist/travel_agency.pyz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lab2-${{ matrix.os }}
+          path: lab2/dist/*
+
+  release:
+    name: Публикация в Releases
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: lab2-v${{ github.run_number }}
+          name: "Лабораторная работа №2, сборка ${{ github.run_number }}"
+          body: "Туристическая компания: CLI-приложение. Windows — .exe, Linux — бинарный файл, любая ОС с Python 3.10+ — .pyz"
+          files: release/*
