@@ -1,9 +1,7 @@
-"""Тесты консольного интерфейса со сценарным вводом."""
 import runpy
 import unittest
 from datetime import date, timedelta
 from unittest.mock import patch
-
 from travel_agency.cli.demo_data import FLIGHT_DAYS_AHEAD, build_demo_company
 from travel_agency.cli.menu import TravelAgencyCli, main
 
