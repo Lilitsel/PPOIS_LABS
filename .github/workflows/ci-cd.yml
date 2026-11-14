@@ -5,8 +5,10 @@ on:
     branches: [ "main", "master" ]
     tags:
       - 'v*'
+    paths: [ "lab1/**", "matrix/**", "lab1_matrix/**", "main.py" ]
   pull_request:
     branches: [ "main", "master" ]
+    paths: [ "lab1/**", "matrix/**", "lab1_matrix/**", "main.py" ]
 
 jobs:
   build-test-release:
