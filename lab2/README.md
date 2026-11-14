@@ -178,30 +178,30 @@ flake8 travel_agency tests run_cli.py           # статический ана�
 
 `BookingStatus`, `PaymentStatus`, `RefundStatus`, `TicketStatus`, `ComplaintStatus` — допустимые состояния объектов.
 
-## Исключения (`travel_agency/exceptions/`, каждое в отдельном файле)
+## Exceptions (`travel_agency/exceptions/`, one per file)
 
-| Исключение | Когда возникает |
+| Exception | When Raised |
 |---|---|
-| `TravelAgencyException` | Базовый класс всех исключений предметной области |
-| `InvalidClientDataException` | Пустое имя, неверный email, повторная регистрация, некорректный отзыв |
-| `InvalidDateRangeException` | Дата окончания периода раньше даты начала |
-| `PassportExpiredException` | Паспорт истекает менее чем через 6 месяцев после поездки |
-| `VisaRequiredException` | Нет действующей визы или исчерпаны въезды |
-| `RoomNotAvailableException` | Нет свободного номера или отеля-партнёра в городе |
-| `SeatNotAvailableException` | Место в самолёте занято или не существует |
-| `TourFullyBookedException` | В туре не осталось мест |
-| `CapacityExceededException` | Переполнены экскурсия, трансфер, пакет или лист ожидания |
-| `BookingNotFoundException` | Бронирование с указанным номером не найдено |
-| `InvalidBookingStateException` | Операция недопустима в текущем статусе (повторная оплата, отмена и т. п.) |
-| `InsufficientFundsException` | Недостаточно денег на карте или бонусных баллов |
-| `CardExpiredException` | Срок действия карты истёк |
-| `InvalidPaymentDataException` | Неверный номер карты, сумма или валюта |
-| `InvalidPromoCodeException` | Промокод исчерпан или скидка некорректна |
-| `RefundNotAllowedException` | Возврат невозможен или превышает лимит менеджера |
-| `InvalidTourDataException` | Некорректные параметры тура, программы, пакета |
-| `StaffNotQualifiedException` | У сотрудника нет нужного языка, категории прав или полномочий |
-| `EmployeeNotFoundException` | Сотрудник не найден в филиале |
-| `InsuranceClaimRejectedException` | Страховой случай вне срока или сверх покрытия |
+| `TravelAgencyException` | Base class for all domain exceptions |
+| `InvalidClientDataException` | Empty name, invalid email, duplicate registration, invalid review |
+| `InvalidDateRangeException` | End date is earlier than start date |
+| `PassportExpiredException` | Passport expires less than 6 months after the trip |
+| `VisaRequiredException` | No valid visa or no entries remaining |
+| `RoomNotAvailableException` | No available room or partner hotel in the city |
+| `SeatNotAvailableException` | Airplane seat is occupied or does not exist |
+| `TourFullyBookedException` | No places left in the tour |
+| `CapacityExceededException` | Excursion, transfer, package, or waitlist is full |
+| `BookingNotFoundException` | Booking with the specified ID was not found |
+| `InvalidBookingStateException` | Operation is invalid in the current state (duplicate payment, cancellation, etc.) |
+| `InsufficientFundsException` | Insufficient funds on the card or bonus points |
+| `CardExpiredException` | Bank card has expired |
+| `InvalidPaymentDataException` | Invalid card number, amount, or currency |
+| `InvalidPromoCodeException` | Promo code is exhausted or discount is invalid |
+| `RefundNotAllowedException` | Refund is not allowed or exceeds the manager's approval limit |
+| `InvalidTourDataException` | Invalid parameters for a tour, itinerary, or package |
+| `StaffNotQualifiedException` | Employee lacks required language, driver'''s license category, or authority |
+| `EmployeeNotFoundException` | Employee was not found in the branch |
+| `InsuranceClaimRejectedException` | Insurance claim is outside the coverage period or exceeds the coverage amount |
 
 ## Документация
 
