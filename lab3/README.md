@@ -1,6 +1,6 @@
 # Lab 3: Computer System
 
-Object-oriented Python model of a computer system: processor, cores, cache, registers, ALU, motherboard, chassis, PCIe lane allocator, RAM and virtual memory, drives and file system, GPU and display pipeline, I/O buses, power and thermal management, BIOS/UEFI firmware, diagnostics, domain exceptions, and an interactive CLI.
+Object-oriented Python model of a computer system: processor, cores, cache, registers, ALU, motherboard, chassis, PCIe lane allocator, RAM and virtual memory, drives and file system, GPU and display pipeline, I/O buses, power and thermal management, BIOS/UEFI firmware, diagnostics, domain exceptions, and an interactive CLI[cite: 7].
 
 ## Summary Statistics
 
@@ -10,10 +10,10 @@ Object-oriented Python model of a computer system: processor, cores, cache, regi
 | Fields (total) | >= 150 | 196 |
 | Meaningful behaviors (public methods) | >= 100 | 168 |
 | Associations between classes | >= 30 | 74 |
-| Custom exceptions | >= 12 | 15 |
+| Custom exceptions | >= 12 | 15[cite: 7] |
 
 Table row format: `Class | fields | methods | associations`.
-Notation `SubClass <- BaseClass` denotes inheritance. Association means a class is used as a field or method parameter.
+Notation `SubClass <- BaseClass` denotes inheritance. Association means a class is used as a field or method parameter[cite: 1].
 
 ## Structure
 
