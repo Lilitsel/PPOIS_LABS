@@ -11,3 +11,9 @@
 3. `ruff check .`
 4. `python3 -m build`
 5. `python3 -m lab4_pkg.cli`
+
+## Additional Details (Option 10)
+
+- **Sorting Algorithms**: `merge_sort` (stable, supports `key`, `reverse`, and `in_place`) and `bozo_sort` (randomized swaps with deterministic `rng` and `max_attempts` guard), plus `TaskRecord` comparisons.
+- **Orthogonal Directed Graph**: `OrthogonalGraph[T]` with orthogonal edge links (`tail_value`, `head_value`, `next_out`, `next_in`, `active`), degree calculations (`in_degree`, `out_degree`, `vertex_degree`, `edge_degree`), `copy` / `assign_from`, comparison operators (`==`, `!=`, `<`, `<=`, `>`, `>=`), bidirectional/read-only iterators (`_BidirectionalIter`), iterator-based deletion (`remove_vertex_at`, `remove_edge_at`), and `ReadOnlyOrthogonalGraph[T]`.
+- **CLI & Testing**: interactive `run_cli` menu (`demo_sorting`, `format_graph_report`, vertex/edge management) and `pytest` + `ruff` + `build` checks configured in `pyproject.toml`.
