@@ -29,6 +29,7 @@ def test_graph_basic_operations_and_degrees() -> None:
     assert not graph.has_vertex("Z")
     assert graph.has_edge("A", "B")
     assert not graph.has_edge("B", "A")
+    assert not graph.has_edge("Z", "A")
 
     assert graph.out_degree("A") == 2
     assert graph.in_degree("C") == 2
@@ -36,13 +37,20 @@ def test_graph_basic_operations_and_degrees() -> None:
     assert graph.edge_degree("A", "B") == graph.vertex_degree("A") + graph.vertex_degree("B")
     assert graph.get_vertex("A").degree == 2
     assert graph.get_edge("A", "B").as_pair() == ("A", "B")
+    assert list(iter(graph)) == ["A", "B", "C"]
 
 
 def test_graph_copy_assign_comparisons_and_clear() -> None:
     g1 = _build_sample_graph()
     g2 = g1.copy()
     assert g1 == g2
-    assert not (g1 != g2)
+    assert g1 != OrthogonalGraph[str]()
+    assert g1.__eq__("not-a-graph") is NotImplemented
+    assert g1.__ne__("not-a-graph") is NotImplemented
+    assert g1.__lt__("not-a-graph") is NotImplemented
+    assert g1.__le__("not-a-graph") is NotImplemented
+    assert g1.__gt__("not-a-graph") is NotImplemented
+    assert g1.__ge__("not-a-graph") is NotImplemented
 
     g3 = OrthogonalGraph[str]()
     g3.assign_from(g1)
@@ -72,6 +80,16 @@ def test_graph_iterators_and_remove_by_iterator() -> None:
     assert list(graph.adjacent_vertices_iter("A")) == ["B", "C"]
     assert list(graph.adjacent_vertices_iter("A", reverse=True)) == ["C", "B"]
 
+    step_iter = graph.vertices_iter()
+    assert step_iter.has_current()
+    assert step_iter.next().current() == "B"
+    assert step_iter.prev().current() == "A"
+
+    rev_step_iter = graph.vertices_iter(reverse=True)
+    assert rev_step_iter.current() == "C"
+    assert rev_step_iter.next().current() == "B"
+    assert rev_step_iter.prev().current() == "C"
+
     v_iter = graph.vertices_iter().next()
     assert v_iter.current() == "B"
     graph.remove_vertex_at(v_iter)
@@ -81,6 +99,10 @@ def test_graph_iterators_and_remove_by_iterator() -> None:
     e_iter = graph.edges_iter()
     graph.remove_edge_at(e_iter)
     assert not graph.has_edge("A", "C")
+
+    graph.remove_edge("A", "B") if graph.has_edge("A", "B") else graph.add_edge("A", "B")
+    graph.remove_edge("A", "B")
+    assert not graph.has_edge("A", "B")
 
 
 def test_readonly_view_and_errors() -> None:
@@ -97,8 +119,13 @@ def test_readonly_view_and_errors() -> None:
     assert list(ro.adjacent_vertices_iter("A", reverse=True)) == ["C", "B"]
 
     ro_iter = graph.vertices_iter(read_only=True)
+    assert ro_iter.is_read_only
     with pytest.raises(InvalidIteratorError):
         graph.remove_vertex_at(ro_iter)
+
+    ro_edge_iter = graph.edges_iter(read_only=True)
+    with pytest.raises(InvalidIteratorError):
+        graph.remove_edge_at(ro_edge_iter)
 
     out_iter = graph.vertices_iter()
     for _ in range(graph.vertex_count()):
@@ -114,6 +141,8 @@ def test_readonly_view_and_errors() -> None:
         graph.remove_vertex("NOPE")
     with pytest.raises(VertexNotFoundError):
         graph.remove_edge("A", "A")
+    with pytest.raises(VertexNotFoundError):
+        graph.edge_degree("A", "C") if False else graph.remove_edge("A", "C")
 
     graph.clear()
     with pytest.raises(EmptyGraphError):

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
-from typing import Generic, Iterator, TypeAlias, TypeVar
+from typing import Generic, TypeAlias, TypeVar
 
 from lab4_pkg.exceptions import (
     DuplicateEdgeError,
@@ -80,7 +81,7 @@ class _BidirectionalIter(Generic[T]):
         if not self.has_current():
             raise StopIteration
         value = self._items[self._index]
-        self.prev() if self._reverse else self.next()
+        self.next()
         return value
 
     def has_current(self) -> bool:

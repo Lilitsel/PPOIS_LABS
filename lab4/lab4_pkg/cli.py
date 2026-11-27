@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import random
-from typing import Callable, TextIO
+from collections.abc import Callable
+from typing import TextIO
 
 from lab4_pkg.exceptions import GraphError
 from lab4_pkg.graph import OrthogonalGraph, ReadOnlyOrthogonalGraph

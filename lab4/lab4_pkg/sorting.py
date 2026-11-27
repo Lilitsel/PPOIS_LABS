@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import random
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 KeyFunc = Callable[[T], object]

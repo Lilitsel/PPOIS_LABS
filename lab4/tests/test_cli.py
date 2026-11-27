@@ -19,25 +19,10 @@ def test_demo_and_report() -> None:
 
 
 def test_run_cli_commands_and_error_handling() -> None:
-    script = "\n".join(
-        [
-            "1",
-            "3",
-            "Start",
-            "3",
-            "Start",
-            "3",
-            "End",
-            "4",
-            "Start",
-            "End",
-            "2",
-            "5",
-            "Start",
-            "99",
-            "0",
-        ]
-    ) + "\n"
+    script = (
+        "1\n3\nStart\n3\nStart\n3\nEnd\n"
+        "4\nStart\nEnd\n2\n5\nStart\n99\n0\n"
+    )
     out = StringIO()
     code = run_cli(StringIO(script), out)
     output = out.getvalue()
