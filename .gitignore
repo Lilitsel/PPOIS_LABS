@@ -13,10 +13,15 @@ __pycache__/
 
 # Артефакты тестов и документация
 .pytest_cache/
-docs/
+/docs/
 htmlcov/
 .coverage
 *.html
 
 # Системные файлы macOS
+.DS_Storebuild/
+dist/
+*.spec
+*.pyz
+coverage.xml
 .DS_Store

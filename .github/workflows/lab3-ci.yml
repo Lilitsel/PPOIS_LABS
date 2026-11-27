@@ -1,0 +1,42 @@
+name: lab3 CI/CD
+
+on:
+  push:
+    branches: ["feat/lab3-computer", "main"]
+    paths:
+      - "lab3/**"
+      - ".github/workflows/lab3-ci.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "lab3/**"
+      - ".github/workflows/lab3-ci.yml"
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lab3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run flake8
+        run: flake8 computer_system tests run_cli.py
+
+      - name: Run pytest with coverage
+        run: pytest --cov=computer_system --cov-report=term-missing --cov-fail-under=90
+
+      - name: Build pyz archive
+        run: python -m zipapp computer_system -m "computer_system.cli.menu:run_cli" -o computer_system.pyz
