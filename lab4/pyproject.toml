@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppoic-lab4-graph-sort"
+version = "0.1.0"
+description = "Lab 4: Merge sort, Bozo sort, and directed orthogonal list graph"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["lab4_pkg*"]
+
+[tool.pytest.ini_options]
+addopts = "-v --cov=lab4_pkg --cov-report=term-missing --cov-fail-under=90"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["lab4_pkg"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
